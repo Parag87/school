@@ -49,7 +49,7 @@ public class KlassServiceTest {
     }
 
     @Test
-    public void shouldNotFindKlass() throws Exception{
+    public void shouldNotFindKlassById() throws Exception{
         Klass k = this.klassservice.findById(3);
         assertNull(k);
     }
@@ -67,19 +67,18 @@ public class KlassServiceTest {
         assertEquals(0, after.getVersion());
         assertEquals("Compozed", after.getName());
     }
+
     @Test
     public void shouldFindKlassWithName() throws Exception{
-        Date date = new Date();
 
-        Klass before = new Klass();
-        before.setName("Compozed");
-        before.setDepartment(Department.ENGINEERING);
-        before.setFee(500000.00);
-        before.setSemester(new Timestamp(date.getTime()));
-        Klass after = this.klassservice.create(before);
-
-        Klass k = this.klassservice.findByName("Compozed");
-        assertEquals(0, after.getVersion());
+        Klass after = this.klassservice.findByName("Compozed");
+        // assertEquals(0, after.getVersion());
         assertEquals("Compozed", after.getName());
+    }
+
+    @Test
+    public void shouldNotFindKlassWithName() throws Exception{
+        Klass after = this.klassservice.findByName("Compozed123");
+        assertNull(after);
     }
 }

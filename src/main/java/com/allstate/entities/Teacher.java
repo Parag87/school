@@ -1,24 +1,23 @@
 package com.allstate.entities;
 
 import com.allstate.enums.Department;
+import com.allstate.enums.Gender;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name="teachers")
 @Data
-@Table(name="klasses")
-public class Klass {
+public class Teacher {
 
     private int id;
     private int version;
     private String name;
-    private Date semester;
-    private Department department;
-    private Double fee;
-    private Date created;
-    private Date modified;
+    private int age;
+    private Gender gender;
+
 
     @Id
     @GeneratedValue
@@ -39,15 +38,16 @@ public class Klass {
         this.version = version;
     }
 
-
-
-    @Column(nullable = false, columnDefinition = "ENUM('SCIENCE', 'ENGINEERING', 'LITERATURE', 'PHILOSOPHY')")
+    @Column(nullable = false, columnDefinition = "ENUM('M' , 'F')")
     @Enumerated(EnumType.STRING)
-    public Department getDepartment() {
-        return department;
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
+
+
+
 }
