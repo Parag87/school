@@ -43,4 +43,35 @@ public class StudentServiceTest {
     }
 
 
+    @Test
+    public void shouldFindStudentByID() throws Exception{
+        Student before = new Student();
+        before.setEmail("tiru@allstate.com");
+        Student after = this.studentservice.create(before);
+        Student s = this.studentservice.findById(2);
+        assertEquals("tiru@allstate.com",s.getEmail());
+    }
+
+    @Test
+    public void shouldNotFindStudentByWrongID() throws Exception{
+        Student before = new Student();
+        before.setEmail("tiru@allstate.com");
+        Student after = this.studentservice.create(before);
+        Student s = this.studentservice.findById(5);
+       assertNull(s);
+    }
+
+    @Test
+    public void shouldFindStudentByEmail() throws Exception{
+        Student s = this.studentservice.findByEmail("test@gmail.com");
+        assertEquals("test@gmail.com",s.getEmail());
+    }
+
+    @Test
+    public void shouldNotFindStudentByWrongEmailID() throws Exception{
+        Student s = this.studentservice.findByEmail("aaa@gmail.com");
+        assertNull(s);
+    }
+
+
 }

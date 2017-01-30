@@ -19,4 +19,13 @@ public class StudentService {
     public Student create(Student s) {
         return this.repository.save(s);
     }
+
+    public Student findById(int id){
+        return this.repository.findOne(id);
+    }
+
+    public Student findByEmail(String email){
+        return this.repository.findByEmail(email);
+    }
+
 }
